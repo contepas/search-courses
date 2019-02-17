@@ -17,8 +17,8 @@
                 <label for="search">
                     <input v-on:keypress.enter="showCourses" v-model="search" type="text" id="search" placeholder="Ex. 'Javascript', 'js', 'Machine Learning'" >
                 </label>
-                <span v-show="error" class="error">{{ errorMessage }}</span>
                 <button v-on:click="showCourses">Search</button>
+                <span v-show="error" class="error">{{ errorMessage }}</span>
             </div>
             <div v-show="totMatches > 0" id="courses">                    
                 <ul>
