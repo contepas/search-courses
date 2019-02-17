@@ -17,16 +17,15 @@
                 <label for="search">
                     <input v-on:keypress.enter="showCourses" v-model="search" type="text" id="search" placeholder="Ex. 'Javascript', 'js', 'Machine Learning'" >
                 </label>
+                <span v-show="error" class="error">{{ errorMessage }}</span>
                 <button v-on:click="showCourses">Search</button>
             </div>
-            <div id="courses">                    
-                <ul v-show="!error">
-                    <li v-for="course in listMatches">
+            <div v-show="totMatches > 0" id="courses">                    
+                <ul>
+                    <li v-for="course in matchCourses">
                         {{ course.title }}
                     </li>
                 </ul>
-                <span v-show="error" class="error">{{ errorMessage }}</span>
-            </div>
             </div>
         </div>
     </div>

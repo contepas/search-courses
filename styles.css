@@ -3,3 +3,11 @@ body {
     margin: 30px;
 }
 
+button {
+    margin-top: 10px;
+    display: block;
+}
+
+.error {
+    color: red;
+}

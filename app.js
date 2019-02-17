@@ -1,47 +1,49 @@
-const KEYWORDS = ['javascript', 'python', 'php', 'machine learning', 'js']
+const server_response = {
+    KEYWORDS: ['javascript', 'python', 'php', 'machine learning', 'js'],
+    COURSES: [
+        {
+            title: "Python Basics",
+            source: "TeamTreeHouse",
+            url: "http://teamTreeHouse.com/python_basics",
+            summary: "This is the course summary.",
+            keys: ["python"],
+            earned_date: ""
+        },
+        {
+            title: "JavaScript Basics",
+            source: "TeamTreeHouse",
+            url: "http://teamTreeHouse.com/javascript_basics",
+            summary: "This is the course summary.",
+            keys: ["javascript", "js"],
+            earned_date: ""
+        },
+        {
+            title: "PHP Basics",
+            source: "TeamTreeHouse",
+            url: "http://teamTreeHouse.com/php_basics",
+            summary: "This is the course summary.",
+            keys: ["php"],
+            earned_date: ""
+        },
+        {
+            title: "Python Advanced",
+            source: "TeamTreeHouse",
+            url: "http://teamTreeHouse.com/python_advanced",
+            summary: "This is the course summary.",
+            keys: ["python"],
+            earned_date: ""
+        },
+        {
+            title: "The Machine Learning",
+            source: "TeamTreeHouse",
+            url: "http://teamTreeHouse.com/machine_learning",
+            summary: "This is the course summary.",
+            keys: ["machine learning"],
+            earned_date: ""
+        },
+    ]
+};
 
-const COURSES = [
-    {
-        title: "Python Basics",
-        source: "TeamTreeHouse",
-        url: "http://teamTreeHouse.com/python_basics",
-        summary: "This is the course summary.",
-        keys: ["python"],
-        earned_date: ""
-    },
-    {
-        title: "JavaScript Basics",
-        source: "TeamTreeHouse",
-        url: "http://teamTreeHouse.com/javascript_basics",
-        summary: "This is the course summary.",
-        keys: ["javascript", "js"],
-        earned_date: ""
-    },
-    {
-        title: "PHP Basics",
-        source: "TeamTreeHouse",
-        url: "http://teamTreeHouse.com/php_basics",
-        summary: "This is the course summary.",
-        keys: ["php"],
-        earned_date: ""
-    },
-    {
-        title: "Python Advanced",
-        source: "TeamTreeHouse",
-        url: "http://teamTreeHouse.com/python_advanced",
-        summary: "This is the course summary.",
-        keys: ["python"],
-        earned_date: ""
-    },
-    {
-        title: "The Machine Learning",
-        source: "TeamTreeHouse",
-        url: "http://teamTreeHouse.com/machine_learning",
-        summary: "This is the course summary.",
-        keys: ["machine learning"],
-        earned_date: ""
-    },
-];
 
 
 const search = new Vue({
@@ -49,21 +51,21 @@ const search = new Vue({
     data: {
         search: '',
         showSearch: false,
-        keywords: KEYWORDS,
-        all_courses: COURSES,
+        keywords: server_response.KEYWORDS,
+        all_courses: server_response.COURSES,
         matchCourses: [],
         error: false,
         errorMessage: '',
     },
     methods: {
         showCourses: function(){
-            //this.matchCourses = [];
+            this.matchCourses = [];
 
             if (!this.search){
                 this.errorMessage =  'Look like you forgot to tell me what to search';
                 this.error = true;
 
-            } else if (!this.keywords.includes(this.search)){
+            } else if (!this.keywords.includes(this.search.toLowerCase())){
                 this.errorMessage = `I could\'t find any match with "${this.search}"`;
                 this.error = true;
 
@@ -79,8 +81,8 @@ const search = new Vue({
         }
     },
     computed:{
-        listMatches: function() {
-            return this.matchCourses.reverse();
+        totMatches: function() {
+            return this.matchCourses.length
         }
     }
 });
