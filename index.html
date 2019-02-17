@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <title>Getting to know me!</title>
+</head>
+<body>
+    <div id="container">
+        <h1 v-on:click="showSearch = !showSearch">Click me to show the search field</h1>
+        <div id="search" v-show="showSearch">
+            <h1>Search trought my courses</h1>
+            <div id="search-form">
+                <label for="search">
+                    <input v-on:keypress.enter="showCourses" v-model="search" type="text" id="search" placeholder="Ex. 'Javascript', 'js', 'Machine Learning'" >
+                </label>
+                <button v-on:click="showCourses">Search</button>
+            </div>
+            <div id="courses">                    
+                <ul v-show="!error">
+                    <li v-for="course in listMatches">
+                        {{ course.title }}
+                    </li>
+                </ul>
+                <span v-show="error" class="error">{{ errorMessage }}</span>
+            </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
