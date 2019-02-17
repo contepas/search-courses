@@ -78,6 +78,8 @@ const search = new Vue({
                     }
                 }
             }
+
+            this.search = '';
         }
     },
     computed:{
